@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  /* background: #aaaaaa; */
+  height: 100vh;
+}
+
+.header {
+  background: #918199;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lista {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+main {
+  height: 500px;
+}
+
+footer {
+  background: rgb(42, 42, 117);
+  color: #fff;
+}
