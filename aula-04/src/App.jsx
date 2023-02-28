@@ -10,7 +10,7 @@ function App() {
       <Header />
 
       <main>
-        <h1 className="title">LISTA DE LINGUAGENS DE PROGRAMAÇÃO</h1>
+        <h1 className="title">LISTA DE LINGUAGENS</h1>
 
         <Card
           title="Javascript"
