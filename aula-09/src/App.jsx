@@ -29,16 +29,21 @@ function App() {
     }
 
     if (id) {
-      const copiaListaDisciplinas = [...listaDisciplinas];
+      //Pegando uma copia da lista de disciplinas (convertidas para String)
+      const copiaListaDisciplinasString = JSON.stringify(listaDisciplinas);
 
+      //Desfazendo a conversao da string (voltando para um array de objetos)
+      const copiaListaDisciplinas = JSON.parse(copiaListaDisciplinasString);
+
+      //Encontrando o index do elemento a ser alterado
       const index = copiaListaDisciplinas.findIndex((item) => item.id === id);
 
+      //Alterando os valores do elemento encontrado
       copiaListaDisciplinas[index].disciplina = disciplina;
-      // copiaListaDisciplinas[index].duracao = duracao;
+      copiaListaDisciplinas[index].duracao = duracao;
 
-      console.log(copiaListaDisciplinas === listaDisciplinas);
-
-      // const item = listaDisciplinas.find((item) => item.id === id);
+      //Setando o state para causar a re-renderizacao
+      setListaDisciplinas(copiaListaDisciplinas);
     } else {
       setListaDisciplinas([
         ...listaDisciplinas,
@@ -62,7 +67,6 @@ function App() {
   }
 
   function preencheEstados(item) {
-    // alert(JSON.stringify(item));
     setDisciplina(item.disciplina);
     setDuracao(item.duracao);
     setId(item.id);
