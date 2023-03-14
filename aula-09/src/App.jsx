@@ -28,35 +28,33 @@ function App() {
       return;
     }
 
-    if (id) {
-      //Pegando uma copia da lista de disciplinas (convertidas para String)
-      const copiaListaDisciplinasString = JSON.stringify(listaDisciplinas);
+    setListaDisciplinas([
+      ...listaDisciplinas,
+      {
+        id: Date.now(),
+        disciplina: disciplina,
+        duracao: duracao,
+      },
+    ]);
 
-      //Desfazendo a conversao da string (voltando para um array de objetos)
-      const copiaListaDisciplinas = JSON.parse(copiaListaDisciplinasString);
-
-      //Encontrando o index do elemento a ser alterado
-      const index = copiaListaDisciplinas.findIndex((item) => item.id === id);
-
-      //Alterando os valores do elemento encontrado
-      copiaListaDisciplinas[index].disciplina = disciplina;
-      copiaListaDisciplinas[index].duracao = duracao;
-
-      //Setando o state para causar a re-renderizacao
-      setListaDisciplinas(copiaListaDisciplinas);
-    } else {
-      setListaDisciplinas([
-        ...listaDisciplinas,
-        {
-          id: Date.now(),
-          disciplina: disciplina,
-          duracao: duracao,
-        },
-      ]);
-    }
     setDisciplina("");
     setDuracao("");
     setId("");
+  }
+
+  function editItem(event) {
+    event.preventDefault();
+
+    const copyListaDisciplinas = [...listaDisciplinas];
+
+    const index = copyListaDisciplinas.findIndex(
+      (disciplina) => disciplina.id === id
+    );
+
+    copyListaDisciplinas[index].disciplina = disciplina;
+    copyListaDisciplinas[index].duracao = duracao;
+
+    setListaDisciplinas(copyListaDisciplinas);
   }
 
   function apagarItem(id) {
@@ -76,7 +74,7 @@ function App() {
     <div className="App">
       <h1>Cadastro de Disciplina</h1>
 
-      <form onSubmit={addItem}>
+      <form onSubmit={id ? editItem : addItem}>
         <input
           required
           value={disciplina}
