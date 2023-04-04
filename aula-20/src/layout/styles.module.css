@@ -1,0 +1,30 @@
+.header {
+  height: 30px;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.footer {
+  height: 30px;
+  text-align: center;
+}
+
+.children {
+  min-height: calc(100vh - 30px - 30px - 100px);
+  padding: 40px 20px;
+}
+
+.logo {
+  width: 150px;
+  height: 60px;
+  object-fit: contain;
+}
